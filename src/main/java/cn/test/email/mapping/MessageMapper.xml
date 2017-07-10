@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.test.email.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="cn.test.email.model.Message" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sendUname" property="senduname" jdbcType="VARCHAR" />
+    <result column="receiveUname" property="receiveuname" jdbcType="VARCHAR" />
+    <result column="postTime" property="posttime" jdbcType="TIMESTAMP" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="readSign" property="readsign" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sendUname, receiveUname, postTime, note, readSign
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.test.email.model.Message" >
+    insert into message (id, sendUname, receiveUname, 
+      postTime, note, readSign
+      )
+    values (#{id,jdbcType=INTEGER}, #{senduname,jdbcType=VARCHAR}, #{receiveuname,jdbcType=VARCHAR}, 
+      #{posttime,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR}, #{readsign,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.test.email.model.Message" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="senduname != null" >
+        sendUname,
+      </if>
+      <if test="receiveuname != null" >
+        receiveUname,
+      </if>
+      <if test="posttime != null" >
+        postTime,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="readsign != null" >
+        readSign,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="senduname != null" >
+        #{senduname,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveuname != null" >
+        #{receiveuname,jdbcType=VARCHAR},
+      </if>
+      <if test="posttime != null" >
+        #{posttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="readsign != null" >
+        #{readsign,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.test.email.model.Message" >
+    update message
+    <set >
+      <if test="senduname != null" >
+        sendUname = #{senduname,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveuname != null" >
+        receiveUname = #{receiveuname,jdbcType=VARCHAR},
+      </if>
+      <if test="posttime != null" >
+        postTime = #{posttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="readsign != null" >
+        readSign = #{readsign,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.test.email.model.Message" >
+    update message
+    set sendUname = #{senduname,jdbcType=VARCHAR},
+      receiveUname = #{receiveuname,jdbcType=VARCHAR},
+      postTime = #{posttime,jdbcType=TIMESTAMP},
+      note = #{note,jdbcType=VARCHAR},
+      readSign = #{readsign,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查找某用户接收到的所有短消息 -->
+  <select id="selectMessage" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from message
+    where receiveuname = #{receiveuname,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getMessageMax" resultType="java.lang.Integer">
+  	select Max(id) from message 
+  </select>
+  
+</mapper>
