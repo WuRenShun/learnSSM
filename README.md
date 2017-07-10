@@ -1,4 +1,6 @@
 # learnSSM
+一个web项目
+
 使用的框架：spring +springMVC+mybatis
 
 使用的数据库：mysql
