@@ -1,5 +1,6 @@
 # learnSSM
 使用的框架：spring +springMVC+mybatis
+
 使用的数据库：mysql
 
 基本介绍：该系统为网站短消息系统。
