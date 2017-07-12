@@ -5,7 +5,7 @@
 <html>
   <head>
 	<title>登陆界面</title>
-  	<link rel="stylesheet" type="text/css" href="css/css1.css">
+  	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/css1.css">
  </head>
 <body>
 	
@@ -17,7 +17,7 @@
 			<div class="text"><span style="font-size:20px;font-weight:bold"">尊敬的用户:</span></p></br>
 				<span style="font-size:14px;">您好，请先登入或注册.</span></div>
 			<div class="one">
-				<form method="post" action="${pageContext.request.contextPath }/user/login.do" name="form1">
+				<form method="post" action="${pageContext.request.contextPath }/user/dologin.do" name="form1">
 					<div class="two">
 						用户名：<input type="text" class="input-1" name="name">
 					</div>
@@ -41,7 +41,7 @@
 							<input type="submit" value="登陆" class="input-2" onclick="return fun()">
 						</div>
 						<div class="four-left">
-							<input type="button" value="注册" class="input-2" onclick="window.location.href='register.jsp'">
+							<input type="button" value="注册" class="input-2" onclick="window.location.href='${pageContext.request.contextPath }/user/register.do'">
 						</div>
 					
 					</div>

@@ -5,26 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.test.email.exception.CustomException;
 import cn.test.email.mapping.MessageMapper;
+import cn.test.email.mapping.UsersMapper;
 import cn.test.email.model.Message;
 import cn.test.email.service.IMessageService;
 
-@Service
+@Service("IMessageService")
 public class IMessageServiceImpl implements IMessageService {
 	
 	@Autowired
 	private  MessageMapper messageMapper;
 
+
 	public void insertMsg(Message message) throws Exception {
 		// TODO Auto-generated method stub
+
 		messageMapper.insertSelective(message);
 
 	}
 
-	public void deleteMsg(int id) throws Exception {
+	public void deleteMsg(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		if(messageMapper.selectByPrimaryKey(id)==null){
-			throw new Exception("删除的对象不存在");
+			throw new CustomException("删除的对象不存在");
 		}
 		messageMapper.deleteByPrimaryKey(id);
 
@@ -36,12 +40,13 @@ public class IMessageServiceImpl implements IMessageService {
 		return message;
 	}
 
-	public Message findMsg(int id) throws Exception {
+	public Message findMsg(Integer id) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		Message message=messageMapper.selectByPrimaryKey(id);
+		return message;
 	}
 
-	public void updateMsg(int id) throws Exception {
+	public void updateMsg(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 
 	}

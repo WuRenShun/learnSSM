@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>test.email</groupId>
+  <groupId>com.email.www</groupId>
   <artifactId>email</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>email Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-  	<dependency>
+    <dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-test</artifactId>
 	    <version>4.3.9.RELEASE</version>
@@ -21,6 +21,16 @@
     <dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-core</artifactId>
+	    <version>4.3.9.RELEASE</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-tx</artifactId>
+	    <version>4.3.9.RELEASE</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
 	    <version>4.3.9.RELEASE</version>
 	</dependency>
 	<dependency>
@@ -69,7 +79,27 @@
 	    <artifactId>javax.servlet.jsp-api</artifactId>
 	    <version>2.3.2-b02</version>
 	</dependency>
+	<!-- 校验器，校验不能为空什么的 -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-validator</artifactId>
+	    <version>5.2.4.Final</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>jstl</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	<dependency>
+	    <groupId>taglibs</groupId>
+	    <artifactId>standard</artifactId>
+	    <version>1.1.2</version>
+	</dependency>
+	
+	
   </dependencies>
   <build>
+    <finalName>email</finalName>
   </build>
 </project>
